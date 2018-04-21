@@ -1,0 +1,9 @@
+#put sensitive files in here that you don't want in you repo if you plan on making it public someday
+sensitive/*
+#.idea folder is created by PHPstorm
+#workspace.xml in the folder contains user-specific settings (and may also contain stored passwords).
+#All other files (including the .iml) are designed to be shareable.
+.idea/*
+.idea/workspace.xml
+
+
