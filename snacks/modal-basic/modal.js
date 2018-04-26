@@ -2,30 +2,20 @@
 //so that several modals can be created dynamically with their own id's
 var modal_count = 0;
 
-function modal(content,//what you want to present to the user
-               title=document.title,//title of the message box
-               modal_id='modal-'+(modal_count++),//auto increments but can specify your own id
-               bodyElement=null,//container for the content below the title
-               titleElement=null,//the title bar at the top
-               closeButtonElement=null,
-               containerElement=null,//the dialogue box centering everything
-               shadeElement=null //the absolute parent of the modal/ the background shade
-) {
+function modal(content="Your text, element or html.", title=document.title,modal_id=modal_count++) {
 
-    function close_modal() {
-        shadeElement.style.display = "none";
-        //and now we need to destroy it coz a new one is created each time don't want a million modals.
-        //note currently the modal clones the content so that it is not lost if an element in the page is specified
-        document.body.removeChild(shadeElement);
-    }
+    var containerElement=null;
+    var titleElement=null;
+    var bodyElement=null;
+    var closeButtonElement=null;
 
-    //setup default elements if nothing is provided..
+
+    //construction...
+
     //the modal/shaded background
-    if (shadeElement==null){
-        shadeElement = document.createElement('div');
-        shadeElement.id=modal_id;
-        shadeElement.className = 'modal-shade';
-    }
+    var shadeElement = document.createElement('div');
+    shadeElement.id=modal_id;
+    shadeElement.className = 'modal-shade';
 
     //the dialogue box
     if (containerElement==null){
@@ -50,7 +40,7 @@ function modal(content,//what you want to present to the user
         closeButtonElement.innerHTML+='&times;';
     }
 
-    //construct the modal
+    //assembly...
     shadeElement.appendChild(containerElement);
     containerElement.appendChild(titleElement);
     titleElement.appendChild(closeButtonElement);
@@ -77,6 +67,14 @@ function modal(content,//what you want to present to the user
     //add the modal to the page
     document.body.appendChild(shadeElement);
 
+    //functions
+
+    function close_modal() {
+        shadeElement.style.display = "none";
+        //and now we need to destroy it coz a new one is created each time don't want a million modals.
+        //note currently the modal clones the content so that it is lost if an element in the page is specified
+        document.body.removeChild(shadeElement);
+    }
     // When the user clicks anywhere outside of the modal or the close button
     document.addEventListener('click',function () {
         if (event.target === shadeElement || event.target === closeButtonElement){

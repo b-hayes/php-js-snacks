@@ -1,0 +1,86 @@
+/**
+Just a side note...  Sizing is always fkn annoying unless you have this
+I'd recommend having border-box for everything in your page like so.
+However, remember to remove this from here before adding to your site.
+This setting should be in your main css file if your going to use it.
+ */
+html {
+    box-sizing: border-box;
+}
+
+
+/* The Modal shade (background) */
+.modal-shade {
+    /** Recommend leaving this alone.
+    By default I have specified no padding so the
+    modals size and look is entirely defined by the container to enable
+    the ability to change the display dynamically
+    by replacing the container styles and html in my php/js class objects/functions.
+     */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Container/Dialog Box */
+.modal-container {
+    /* adjust these as you want..
+     Note: I made the modal shade have no padding so that you can specify exactly how you want
+     the container to display by default it fits the content(body) and is centered in the middle
+     */
+    height: fit-content;
+    width: fit-content;
+    border: 2px solid #888;
+
+    /* Don't change if you want it centered.
+    Centering horizontally and vertically
+    requires parent element (the modal/shade) to have
+    fixed, relative or absolute position with specified height and width*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.modal-title{
+    /*this is required so that padding + 100% width doesn't go outside it's parent*/
+    box-sizing : border-box;
+    width: 100%;
+    border-bottom: solid 1px grey;
+    background: cornflowerblue;
+    color: white;
+    padding: 10px;
+}
+
+.modal-body{
+    padding: 10px;
+    background: white;
+}
+/* The Close Button */
+.modal-close {
+    /** The default close button styles are used if you do not
+    specify your own close button when you instantiate/call the php/js classes/functions.
+     */
+    color: darkgray;
+    font-size: 24px;
+    font-weight: bold;
+    /*positioning absolute as the float is insufficient for placing in the top right corner*/
+    position: absolute;
+    top: 0px;
+    right: 8px;
+}
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

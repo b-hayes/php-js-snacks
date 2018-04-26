@@ -89,14 +89,14 @@
     }
 </style>
 
-<div class="modal-title">
-    Change themes :
+<div style="width: 100%">
+    Change modal styles :
     <?php
     //theme switcher..
     if (isset($_GET["modal-theme"])){
         $currentModalTheme = $_GET["modal-theme"];
     } else {
-        $currentModalTheme = "modals.css";
+        $currentModalTheme = "modal.css";
     }
 
     $dir = __DIR__;
@@ -125,7 +125,7 @@ The important parts of css are:
 <link rel="stylesheet" href="<?=$currentModalTheme?>">
 
 
-<h1>Generic/Dynamic modals. Usage Examples</h1>
+<h1>Basic Dynamic modal. Usage Examples:</h1>
 <p>Does not require jquery</p>
 
 <!-- BELOW IS MODAL DEFINED MANUALLY -->
@@ -196,7 +196,7 @@ The important parts of css are:
     Create modal with javascript function</button>
 
 <!-- infinite modals -->
-<button onclick="modal(this);">Infinite modals. This buttin is cloned in the modal.</button>
+<button onclick="modal(this);">Infinite modals. This button is cloned in the modal.</button>
 
 <script>
     function someText() {
@@ -206,12 +206,10 @@ The important parts of css are:
 <!--Using the result of a function as the modal content-->
 <button onclick="modal(someText());">Display the result of a function in the modal.</button>
 
-
-<!--define your own container-->
-<div id="myContainer" style="width: 40vw; height: 40vw; display: none;"></div>
-<button onclick="modal(
-    'This modal is is using a container defined manually instead of the default.',
-    'Specified title as well',
-    'myModal_id',
-    null,null,null,document.getElementById('myContainer')
-)">Pass in a container defined in html.</button>
+<!-- pass some html in to the modal and specify the modals ID so you can modify it -->
+<div id="the-html" hidden>
+    <h3>Do you want to close this modal?</h3>
+    <p>Note the basic version will destroy your custom html element when it closes. Its a one use only thing.</p>
+    <button onclick="document.getElementById('the-modal-id').remove();">YES!</button>
+</div>
+<button onclick="modal(document.getElementById('the-html'),'This my modal now!','the-modal-id')">Pass in html.</button>
